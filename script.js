@@ -6,9 +6,8 @@ submitBtn.disabled = true;
 
 const elements = document.querySelectorAll(".element");
 const selectColor = document.getElementById("select-color");
-// selectColor = document.querySelector("#select-color");
 
-//console.log(selectColor);
+const ranNum = Math.floor(Math.random() * 9);
 
 function getRandomColor() {
   const letter = "0123456789ABCDEF";
@@ -20,11 +19,13 @@ function getRandomColor() {
   return color;
 }
 
+let count = 0;
 elements.forEach(function (element) {
   const color = getRandomColor();
   element.style.backgroundColor = color;
   element.innerHTML = color;
-  selectColor.innerHTML = color;
+  if (ranNum == count) selectColor.innerHTML = color;
+  count++;
 });
 
 elements.forEach(function (element) {
@@ -32,7 +33,6 @@ elements.forEach(function (element) {
     if (element.innerHTML === selectColor.innerHTML) {
       checkbox.disabled = false;
       checkbox.checked = true;
-      // checkbox.Checked = true;
       alert("You're Human.");
       submitBtn.disabled = false;
       submitBtn.classList.remove("btn-light");
